@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AB TEST ANALYZER? For What?</title>
+  <meta charset="utf-8">
+  <meta name="description" content="AB TEST ANALYZER? For What?">
+  <meta name="author" content="Geoffrey Anderson">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/highlighters/highlight/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/js/slides" 
+    src="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>AB TEST ANALYZER? For What?</h1>
+    <h2>How to run an AB test scientifically, and then mess the whole thing up by using decision criteria from a wild donkey guess (WAG), OR NOT.</h2>
+    <p>Geoffrey Anderson<br/>Data Driven Decisions All The Way</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How do you separate the signal from the noise?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Yes, you can run your AB test. Fine, you can measure the outcomes of your experiment. Excellent, you can see if group A&#39;s average was better than group B&#39;s. BUT, BUT, BUT, how much better, is REALLY better? How about 10% better? How about 50% better? What about TWICE as good? Is that better? Let&#39;s see a show of hands. Who here can tell me that twice as good, is the right decision rule in this case, and in every business case? Are all businesses the same? Let&#39;s see a show of hands. Raise your hand if all businesses are the same. What? They are not the same? GOOD YOU ARE PAYING ATTENTION. Twice as good is NOT A VALID DECISION RULE for every AB experiment of every business. Experiments and businesses are not all the same! This should not be a surprise really.</p>
+
+<p>So then what is a good decision rule? Three times as good? NO. The right answer is: IT DEPENDS. You have heard that before. Here&#39;s the difference: This is a not a vacuous answer. YOUR DECISION CRITERIA DEPENDS ON YOUR DATA. AND IT IS NOT HARD TO DO. BUT DID YOU DO IT? Ask yourself this: How much CHANCE and NOISE was involved in your business process? How will you separate your signal from your noise? Answer: Use the AB TEST ANALYZER program.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Use data, not assumptions, to detect signals.</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Why would you take time to run an AB test scientifically, and then mess the whole thing up by using decision criteria which came from a wild donkey guess (WAG)?  Twice as good -- it sounds good, it feels right, and people may even believe you if they don&#39;t know any better. But if that&#39;s your decision criteria, and if you arrived at that ASSUMPTION simply because it felt right, THEN KNOW THAT YOU ARE MAKING A WILD DONKEY GUESS (WAG), and you are botching up your whole experiment.  Don&#39;t do it. DECISION CRITERIA, like anything else, need to come from your DATA. Decision criteria cannot come from your wild donkey. Well it can and people do it all the time unfortunately. There is a better way. Some businesses are better than others!</p>
+
+<p>The better way is, do not assume! You RAN the experiment. You HAVE your data. Now you should FINISH what you started, using the AB TEST ANALYZER. To find the right decision criteria for any specific experiment, you need to determine what level of improvement actually is a MEANINGFUL SIGNAL, in EACH EXPERIMENT. This is just what the AB TEST ANALYZER program does: It evaluates and decides, after mathematically REMOVING THE EFFECT OF CHANCE, whether A OR B IS BETTER -- OR NEITHER IS BETTER -- using actual experimental data summaries that you supply.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Are we there yet? Are we there yet?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Let&#39;s say an AB test was run like this: You hope to get more of your existing customers to open the emails you send them. You devised an AB test where you used the same email body, but you had two different email subject texts, labeled A and B. Success is if an email is opened, and not opening is a failure. You sent 20 emails, 10 of A and 10 of B, to different customers. The results:</p>
+
+<pre><code>##  [1] 0 1 0 1 1 1 1 0 0 1
+</code></pre>
+
+<pre><code>##  [1] 0 1 0 0 1 0 0 0 0 0
+</code></pre>
+
+<p>It turned out that more than TWICE as many people opened emails in group A, at least in the first trials of this AB test. Sounds good, right? Assume you said it sounds good and stopped the experiment there. You have your winner in group A. That would be the end of AB testing, but only if you were the kind of decision maker who uses wild donkey guessing to make decisions. Should your stop now, or continue experimenting? How do you even decide? Critically, the AB TEST ANALYZER will intelligently advise you whether you have ENOUGH data on hand to detect a signal, or do you need to GO COLLECT MORE test data, at any time.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Experiment only when necessary.</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Wait a second! What does AB TEST ANALYZER say about the first 20 trials?</p>
+
+<pre><code>## [1] &quot;Cannot say that one is better than the other. The difference between the means of the two groups is indistinguishable from CHANCE. However, running more experimental trials still has the potential to surface a signal if one exists, as always.&quot;
+</code></pre>
+
+<p>The AB TEST ANALYZER says the better group is NOT known yet. Consequently we decide to keep going with this experiment, as the tool suggested. We send out emails to 80 more customers, 40 in each group. What does it say after 100 trials?</p>
+
+<pre><code>## [1] &quot;B is better than A.&quot;
+</code></pre>
+
+<p>The tool now says B is better than A. It is OK to change decisions with new information. About 95% of the time the tool will be correct. Now, the sneaky truth is that I set up this simulation so A really had a 30% success rate, and B had a 40% success rate. The tool could not tell at first if A or B was better. There was not enough data to make an accurate prediction yet. But because it is good, the tool soon discovered that B was better, which is accurate. Every experiment is different in the real world. Run AB TEST ANALYZER after every experiment. It is safe and effective!</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='How do you separate the signal from the noise?'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Use data, not assumptions, to detect signals.'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Are we there yet? Are we there yet?'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Experiment only when necessary.'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+   
+  </html>

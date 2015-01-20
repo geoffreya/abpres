@@ -1,0 +1,91 @@
+---
+title       : AB TEST ANALYZER? For What?
+subtitle    : How to run an AB test scientifically, and then mess the whole thing up by using decision criteria from a wild donkey guess (WAG), OR NOT.
+author      : Geoffrey Anderson 
+job         : Data Driven Decisions All The Way
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : standalone # {standalone, selfcontained, draft}
+knit        : slidify::knit2slides
+
+--- .class #id 
+
+```{r, echo=FALSE}
+bettertextA = 'A is better than B.' 
+bettertextB = 'B is better than A.' 
+neitherbettertext = 'Cannot say that one is better than the other. The difference between the means of the two groups is indistinguishable from CHANCE. However, running more experimental trials still has the potential to surface a signal if one exists, as always.'
+abtest.binary = function(a_s, a_f, b_s, b_f, conf.level=0.95, detail=FALSE) {       
+    a_rate = a_s / (a_s + a_f)
+    b_rate = b_s / (b_s + b_f)
+    if (a_rate > b_rate) {
+        x = c(a_s, b_s)
+        n = c(a_s + a_f, b_s + b_f)
+        bettertext = bettertextA
+    } else {
+        x = c(b_s, a_s)
+        n = c(b_s + b_f, a_s + a_f)
+        bettertext = bettertextB
+    }        
+    y = 0
+    suppressWarnings(y <- prop.test(x=x, n=n, alternative='greater'))
+    cutoffp = 1 - conf.level
+    if (is.na(y$p.value)) {
+        ret = neitherbettertext
+    } else if (y$p.value <= cutoffp) {
+        ret = bettertext
+    } else {
+        ret = neitherbettertext
+    }
+    if (detail) {
+        ret = y
+    }
+    ret
+}
+```
+## How do you separate the signal from the noise?
+
+Yes, you can run your AB test. Fine, you can measure the outcomes of your experiment. Excellent, you can see if group A's average was better than group B's. BUT, BUT, BUT, how much better, is REALLY better? How about 10% better? How about 50% better? What about TWICE as good? Is that better? Let's see a show of hands. Who here can tell me that twice as good, is the right decision rule in this case, and in every business case? Are all businesses the same? Let's see a show of hands. Raise your hand if all businesses are the same. What? They are not the same? GOOD YOU ARE PAYING ATTENTION. Twice as good is NOT A VALID DECISION RULE for every AB experiment of every business. Experiments and businesses are not all the same! This should not be a surprise really.
+
+So then what is a good decision rule? Three times as good? NO. The right answer is: IT DEPENDS. You have heard that before. Here's the difference: This is a not a vacuous answer. YOUR DECISION CRITERIA DEPENDS ON YOUR DATA. AND IT IS NOT HARD TO DO. BUT DID YOU DO IT? Ask yourself this: How much CHANCE and NOISE was involved in your business process? How will you separate your signal from your noise? Answer: Use the AB TEST ANALYZER program.
+
+--- .class #id 
+
+## Use data, not assumptions, to detect signals.
+Why would you take time to run an AB test scientifically, and then mess the whole thing up by using decision criteria which came from a wild donkey guess (WAG)?  Twice as good -- it sounds good, it feels right, and people may even believe you if they don't know any better. But if that's your decision criteria, and if you arrived at that ASSUMPTION simply because it felt right, THEN KNOW THAT YOU ARE MAKING A WILD DONKEY GUESS (WAG), and you are botching up your whole experiment.  Don't do it. DECISION CRITERIA, like anything else, need to come from your DATA. Decision criteria cannot come from your wild donkey. Well it can and people do it all the time unfortunately. There is a better way. Some businesses are better than others!
+
+The better way is, do not assume! You RAN the experiment. You HAVE your data. Now you should FINISH what you started, using the AB TEST ANALYZER. To find the right decision criteria for any specific experiment, you need to determine what level of improvement actually is a MEANINGFUL SIGNAL, in EACH EXPERIMENT. This is just what the AB TEST ANALYZER program does: It evaluates and decides, after mathematically REMOVING THE EFFECT OF CHANCE, whether A OR B IS BETTER -- OR NEITHER IS BETTER -- using actual experimental data summaries that you supply.
+
+--- .class #id 
+
+## Are we there yet? Are we there yet?
+
+```{r Seeding, echo=FALSE}
+set.seed(250); pA=0.3; pB=0.4;
+A=rbinom(n=100,size=1,prob=pA); B=rbinom(n=100,size=1,prob=pB)
+r=10
+ab1 <- abtest.binary(a_s=sum(A[1:r]==1), a_f=sum(A[1:r]==0), b_s=sum(B[1:r]==1), b_f=sum(B[1:r]==0))
+r=100
+ab2 <- abtest.binary(a_s=sum(A[1:r]==1), a_f=sum(A[1:r]==0), b_s=sum(B[1:r]==1), b_f=sum(B[1:r]==0))
+```
+Let's say an AB test was run like this: You hope to get more of your existing customers to open the emails you send them. You devised an AB test where you used the same email body, but you had two different email subject texts, labeled A and B. Success is if an email is opened, and not opening is a failure. You sent 20 emails, 10 of A and 10 of B, to different customers. The results:
+```{r PrintFirstTen, echo=FALSE}
+print(A[1:10])
+print(B[1:10])
+```
+It turned out that more than TWICE as many people opened emails in group A, at least in the first trials of this AB test. Sounds good, right? Assume you said it sounds good and stopped the experiment there. You have your winner in group A. That would be the end of AB testing, but only if you were the kind of decision maker who uses wild donkey guessing to make decisions. Should your stop now, or continue experimenting? How do you even decide? Critically, the AB TEST ANALYZER will intelligently advise you whether you have ENOUGH data on hand to detect a signal, or do you need to GO COLLECT MORE test data, at any time.
+
+--- .class #id 
+
+## Experiment only when necessary.
+
+Wait a second! What does AB TEST ANALYZER say about the first 20 trials?
+```{r FirstAnalysis, echo=FALSE}
+print(ab1)
+```
+The AB TEST ANALYZER says the better group is NOT known yet. Consequently we decide to keep going with this experiment, as the tool suggested. We send out emails to 80 more customers, 40 in each group. What does it say after 100 trials?
+```{r SecondAnalysis, echo=FALSE}
+print(ab2)
+```
+The tool now says B is better than A. It is OK to change decisions with new information. About 95% of the time the tool will be correct. Now, the sneaky truth is that I set up this simulation so A really had a 30% success rate, and B had a 40% success rate. The tool could not tell at first if A or B was better. There was not enough data to make an accurate prediction yet. But because it is good, the tool soon discovered that B was better, which is accurate. Every experiment is different in the real world. Run AB TEST ANALYZER after every experiment. It is safe and effective!
